@@ -9,22 +9,22 @@ import webdesign from '../assets/webdesign.svg';
 import skills from '../assets/skills.svg';
 import { useState } from "react"
 import { ThemeProvider } from 'styled-components';
-
-const LightTheme = {
-  
-
-}
-
-const DarkTheme = {
-
-
-}
+import { GlobalStyles } from '../globalStyles'
+import { LightTheme, DarkTheme } from '../theme'
 
 function LandingPage() {
+  const [theme, setTheme] = useState('light')
+  
+  const toggler = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light')
+  }
+
     return (
-    <div>
+    <ThemeProvider theme={ theme === 'light' ? DarkTheme : LightTheme }>
+      <>
+      <GlobalStyles />
       <nav className="nav-bar">
-        <img src={logo}/>
+        <img src={logo} alt="logo" />
 
         <div className="nav-links">
           <ul className="nav-text">
@@ -34,7 +34,7 @@ function LandingPage() {
           </ul>
           <div id="switch-btn">
             <label class="switch">
-              <input id="checkbox" type="checkbox"/>
+              <input id="checkbox" type="checkbox" onClick={toggler}/>
               <span class="slider"></span>
             </label>
           </div>
@@ -47,7 +47,7 @@ function LandingPage() {
         <p>Frontend Developer</p>
         <button className="cv-btn">Download Resume</button></div>
         <div className="hero-img" >
-          <img src={heroImage}/>
+          <img src={heroImage} alt="hero" />
         </div>
       </section>
       <section className="about" id="about-sec">
@@ -62,18 +62,18 @@ function LandingPage() {
         <div className="socials">
           <div>
             <a href={"https://mobile.twitter.com/tytypicasso"}>
-            <img src={twitterLogo}/>
+            <img src={twitterLogo} alt="twitter" />
             <p>Twitter</p>
             </a>
           </div>
           <div>
             <a href={"https://www.linkedin.com/in/adeyinka-akinnukawe-664a37139/"}>
-            <img src={linkedInLogo}/>
+            <img src={linkedInLogo} alt="linkedin" />
             <p>LinkedIn</p></a>
           </div>
           <div>
             <a href={"https://github.com/Tahree22"}>
-            <img src={githubLogo}/>
+            <img src={githubLogo} alt="github" />
             <p>Git hub</p></a>
           </div>
         </div>
@@ -82,15 +82,15 @@ function LandingPage() {
         <h2>What I do</h2>
         <div className="skills-cards">
         <div className="card">
-          <img src={software}/>
+          <img src={software} alt="Software" />
           <h3>Software <span>Development</span></h3>
         </div>
         <div className="card">
-          <img src={webdev}/>
+          <img src={webdev} alt="Web Dev"/>
           <h3>Web <span>Development</span></h3>
         </div>
         <div className="card">
-          <img src={webdesign}/>
+          <img src={webdesign} alt="Web design" />
           <h3>Web <span>Design</span></h3>
         </div>
         </div>
@@ -98,10 +98,11 @@ function LandingPage() {
       <section className="my-skills">
         <h2>My skills</h2>
       <div className="skills-img">
-        <img src={skills}/>
+        <img src={skills} alt="skills" />
         </div>
       </section>
-    </div>   
+      </>
+    </ThemeProvider>   
     )
   }
 

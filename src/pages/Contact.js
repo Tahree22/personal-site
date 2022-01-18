@@ -23,7 +23,7 @@ function Contact() {
                 </div>
             </form>
             </div>
-            <p className="copyright">&copy; Copyright Tari Akinnukawe 2021 </p>
+            <p className="copyright">&copy; Copyright Tari Akinnukawe 2022 </p>
         </footer>
     )
 }
